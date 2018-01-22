@@ -1,0 +1,8 @@
+kubectl config use-context $1
+if [ $2 = "proxy" ]; then
+    kubectl proxy --address="localhost"  --port=9091 &
+    # open -a "/Applications/Google Chrome.app" 'http://127.0.0.1:9091/ui'
+    open 'http://127.0.0.1:9091/ui'
+else
+    kail --deploy $2 --log-level info
+fi
